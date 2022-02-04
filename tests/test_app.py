@@ -64,6 +64,10 @@ class TestStringMethods(unittest.TestCase):
         result = app.minmax(['#', 'X', 'O', 'X', 'X', 'O', 'O', 'O', 'X', 'X'], 0, True)
         self.assertEqual(result, 0)
 
+    def test_minmax_draw2(self):
+        result = app.minmax(['#', 'X', 'O', 'O', 'O', 'O', ' ', 'X', ' ', 'X'], 0, True)
+        self.assertEqual(result, 100)
+
     def test_comp_move(self):
         result = app.comp_move(['#', 'X', 'O', ' ', 'X', 'O', 'O', ' ', 'X', 'X'])
         self.assertEqual(result, 0)
