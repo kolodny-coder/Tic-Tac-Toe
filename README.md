@@ -1,7 +1,7 @@
 
 # Tic Tac Toe
 
-This repository contains python based interactive Tic-Tac-Toe CLI game.
+This repository contains a python-based interactive Tic-Tac-Toe CLI game.
 
 
 ## Installation
@@ -12,7 +12,7 @@ Install my-project with git clone
 git clone git@github.com:kolodny-coder/Tic-Tac-Toe.git
 ```
 
-## Quick start
+## Quickstart
 
 ```bash
   cd Tic-Tac-Toe
@@ -24,10 +24,10 @@ git clone git@github.com:kolodny-coder/Tic-Tac-Toe.git
     
 ## Ground rules 
 - The computer always go first 
-- Tme computer mark is X and players's mark is O
-- To place a amrk the player jsut need to choose the position index.
+- The computer mark is X, and the players' mark is O
+- To place a mark, the player needs to choose the position index.
 
-- The board positon index is as follows
+- The board position index is as follows
 
 | 1 |2     | 3                |
 | :-------- | :------- | :------------------------- |
@@ -40,8 +40,8 @@ git clone git@github.com:kolodny-coder/Tic-Tac-Toe.git
 
 ## Features to be added 
 
-- choose who go first bot or player
-- addding UI
+- choose who goes first bot or player
+- adding UI
 - score table \ counter
 
 
