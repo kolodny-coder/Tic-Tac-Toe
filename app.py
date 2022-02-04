@@ -8,6 +8,7 @@ def app():
 
         # SET EVERYTHING UP (BOARD)
         the_board = ['#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
+
         # GAME PLAY
         play_game = input('Ready to play ? y or n  ')
 
@@ -32,8 +33,7 @@ def app():
                     print('The computer has won!!')
                     break
 
-                    # Check if there is a tie
-
+                # Check if there is a tie
                 elif full_board_check(the_board):
                     print("TIE game !!!")
                     game_on = False
@@ -43,9 +43,8 @@ def app():
             # Player turn
             else:
                 # Chose a position
-                position = player_choise(the_board)
+                position = player_choice(the_board)
                 place_marker(the_board, 'O', position)
-                # display_board(the_board)
                 if check_for_win(the_board, 'O'):
                     display_board(the_board)
                     print('The player has won!!')
