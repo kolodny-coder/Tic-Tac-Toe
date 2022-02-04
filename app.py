@@ -1,16 +1,9 @@
-from computer_strategy import comp_return_position
-
-
 def display_board(board):
-    print('\n' * 30)
+    print('\n' * 1)
 
     print(board[1] + ' | ' + board[2] + ' | ' + board[3])
     print(board[4] + ' | ' + board[5] + ' | ' + board[6])
     print(board[7] + ' | ' + board[8] + ' | ' + board[9])
-
-
-# board = [' ']* 10
-# board = ['#', ' ', 'O', 'X', 'X', 'X', 'O', 'O', 'O', 'X']
 
 
 def place_marker(board, mark, position):
@@ -36,7 +29,6 @@ def space_check(board, position):
 
 def full_board_check(board):
     for i in range(1, 10):
-        print(i)
         if space_check(board, i):
             return False
 
@@ -58,7 +50,7 @@ def player_choise(board):
 
 
 def reply():
-    choise = input('Do YOU want to play again? Yes or NO  ').upper()
+    choise = input('Do YOU want to play again? Y or N ').upper()
     return choise == 'Y'
 
 
@@ -89,7 +81,6 @@ def minmax(board, depth, is_maximazing):
     if is_maximazing:
         best_score = -1000
 
-
         for indx, key in enumerate(board):
             if key == ' ':
                 board[indx] = 'X'
@@ -105,16 +96,13 @@ def minmax(board, depth, is_maximazing):
 
         for indx, key in enumerate(board):
             if key == ' ':
-                board[indx] = 'X'
+                board[indx] = 'O'
                 score = minmax(board, 0, True)
                 board[indx] = ' '
                 if score < best_score:
                     best_score = score
 
         return best_score
-
-
-
 
 
 # WHILE LOOP TO KEEP RUNNING THE GAME
@@ -126,10 +114,9 @@ def app():
         # SET EVERYTHING UP (BOARD, WHOS FIRST)
         the_board = ['#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
         # GAME PLAY
-        # play_game = input('Ready to play ? y or n  ')
+        play_game = input('Ready to play ? y or n  ')
 
-        # if play_game == 'y':
-        if 'y' == 'y':
+        if play_game == 'y':
             game_on = True
         else:
             game_on = False
@@ -139,23 +126,21 @@ def app():
             if turn == 'computer':
                 # show the board
                 display_board(the_board)
-                # Chose a position
-                # position = comp_return_position(the_board)
-                # place the marker at the
 
-                # place_marker(the_board, 'X', position)
+                # Chose a position
+
                 comp_move(the_board)
                 display_board(the_board)
                 # Check if they won
                 if check_for_win(the_board, 'X'):
                     display_board(the_board)
                     print('The computer has won!!')
-                    game_on = False
                     break
+
                     # Check if there is a tie
 
                 elif full_board_check(the_board):
-                    display_board(the_board)
+                    # display_board(the_board)
                     print("TIE game !!!")
                     game_on = False
                 else:
@@ -163,31 +148,26 @@ def app():
 
             # Player turn
             else:
-                display_board(the_board)
                 # Chose a position
                 position = player_choise(the_board)
                 place_marker(the_board, 'O', position)
-                display_board(the_board)
+                # display_board(the_board)
                 if check_for_win(the_board, 'O'):
                     display_board(the_board)
                     print('The player has won!!')
-                    game_on = False
                     break
+
                 if full_board_check(the_board):
                     display_board(the_board)
                     print("TIE game !!!")
-                    game_on = False
                     break
                 else:
                     game_on = True
 
                     turn = 'computer'
-            # turn = 'computer'
 
         if not reply():
             break
-
-  #  BRAKe OUT OF THE WHILE LOOP ON reply()
 
 
 if __name__ == '__main__':
