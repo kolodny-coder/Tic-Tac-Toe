@@ -48,14 +48,27 @@ class TestStringMethods(unittest.TestCase):
         result = app.check_for_win(test_board_diagonal_left_to_right, 'X')
         self.assertTrue(result)
 
+    def test_minmax_x_wins(self):
+        result = app.minmax(['#', '1', '2', 'X', '4', '0', '6', 'X', '3', 'X'], 0, True)
+        self.assertEqual(result, 100)
 
-    #
-    # def test_split(self):
-    #     s = 'hello world'
-    #     self.assertEqual(s.split(), ['hello', 'world'])
-    #     # check that s.split fails when the separator is not a string
-    #     with self.assertRaises(TypeError):
-    #         s.split(2)
+    def test_minmax_x_wins2(self):
+        result = app.minmax(['#', 'X', ' ', 'O', ' ', 'O', ' ', ' ', ' ', 'X'], 0, True)
+        self.assertEqual(result, 100)
+
+    def test_minmax_o_wins(self):
+        result = app.minmax(['#', '1', '2', 'O', '4', '0', '6', 'O', '3', 'O'], 0, True)
+        self.assertEqual(result, -100)
+
+    def test_minmax_draw(self):
+        result = app.minmax(['#', 'X', 'O', 'X', 'X', 'O', 'O', 'O', 'X', 'X'], 0, True)
+        self.assertEqual(result, 0)
+
+    def test_comp_move(self):
+        result = app.comp_move(['#', 'X', 'O', ' ', 'X', 'O', 'O', ' ', 'X', 'X'])
+        self.assertEqual(result, 0)
+
+
 
 
 if __name__ == '__main__':

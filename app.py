@@ -2,7 +2,7 @@ from computer_strategy import comp_return_position
 
 
 def display_board(board):
-    print('\n' * 100)
+    print('\n' * 30)
 
     print(board[1] + ' | ' + board[2] + ' | ' + board[3])
     print(board[4] + ' | ' + board[5] + ' | ' + board[6])
@@ -10,10 +10,8 @@ def display_board(board):
 
 
 # board = [' ']* 10
-board = ['#', ' ', 'O', 'X', 'X', 'X', 'O', 'O', 'O', 'X']
+# board = ['#', ' ', 'O', 'X', 'X', 'X', 'O', 'O', 'O', 'X']
 
-
-# display_board(board)
 
 def place_marker(board, mark, position):
     board[position] = mark
@@ -45,15 +43,12 @@ def full_board_check(board):
     return True
 
 
-# def computer_choise(board):
-#     if board == [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']:
-#         return  1
-#     elif board == [' ', 'X', ' ', ' ', ' ', 'O', ' ', ' ', ' ', ' ']:
-#         return 9
-#     elif board == [' ', 'X', ' ', 'O', ' ', 'O', ' ', ' ', ' ', 'X']:
-#         return 7
-#     elif board != [' ', 'X', ' ', 'O', ' ', 'O', ' ', 'O', ' ', 'X']:
-#         return 7
+def check_for_draw(board):
+    if (not (check_for_win(board, 'X')) and not (check_for_win(board, 'O')) and full_board_check(board)):
+        return True
+    else:
+        return False
+
 
 def player_choise(board):
     position = 0
@@ -67,85 +62,133 @@ def reply():
     return choise == 'Y'
 
 
-# WHILE LOOP TO KEEP RUNNING THE GAME
-print('Welocome to Tic Tac Toe')
-while True:
-    # PLAY THE GAME
+def comp_move(board):
+    best_score = -1000
+    best_move = 0
 
-    # SET EVERYTHING UP (BOARD, WHOS FIRST)
-    the_board = [' '] * 10
-    # GAME PLAY
-    # play_game = input('Ready to play ? y or n  ')
+    for indx, key in enumerate(board):
+        if key == ' ':
+            board[indx] = 'X'
+            score = minmax(board, 0, False)
+            board[indx] = ' '
+            if score > best_score:
+                best_score = score
+                best_move = indx
+    place_marker(board, 'X', best_move)
+    return
 
-    # if play_game == 'y':
-    if 'y' == 'y':
-        game_on = True
+
+def minmax(board, depth, is_maximazing):
+    if check_for_win(board, 'X'):
+        return 100
+    elif check_for_win(board, 'O'):
+        return -100
+    elif check_for_draw(board):
+        return 0
+
+    if is_maximazing:
+        best_score = -1000
+
+
+        for indx, key in enumerate(board):
+            if key == ' ':
+                board[indx] = 'X'
+                score = minmax(board, 0, False)
+                board[indx] = ' '
+                if score > best_score:
+                    best_score = score
+
+        return best_score
+
     else:
-        game_on = False
-    turn = 'computer'
-    while game_on:
+        best_score = 1000
 
-        if turn == 'computer':
-            # show the board
-            display_board(the_board)
-            # Chose a position
-            position = comp_return_position(the_board)
-            # place the marker at the
+        for indx, key in enumerate(board):
+            if key == ' ':
+                board[indx] = 'X'
+                score = minmax(board, 0, True)
+                board[indx] = ' '
+                if score < best_score:
+                    best_score = score
 
-            place_marker(the_board, 'X', position)
-            display_board(the_board)
-            # Check if they won
-            if check_for_win(the_board, 'X'):
-                display_board(the_board)
-                print('The computer has won!!')
-                game_on = False
-                # Check if there is a tie
+        return best_score
 
-                if full_board_check(the_board):
-                    display_board(the_board)
-                    print("TIE game !!!")
-                    game_on = False
-                else:
 
-                    turn = 'player'
 
-            else:
-                if full_board_check(the_board):
-                    display_board(the_board)
-                    print("TIE game !!!")
-                    game_on = False
-                else:
-                    turn = 'player'
-        # Player turn
+
+
+# WHILE LOOP TO KEEP RUNNING THE GAME
+def app():
+    print('Welocome to Tic Tac Toe')
+    while True:
+        # PLAY THE GAME
+
+        # SET EVERYTHING UP (BOARD, WHOS FIRST)
+        the_board = ['#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
+        # GAME PLAY
+        # play_game = input('Ready to play ? y or n  ')
+
+        # if play_game == 'y':
+        if 'y' == 'y':
+            game_on = True
         else:
-            display_board(the_board)
-            # Chose a position
-            position = player_choise(the_board)
-            place_marker(the_board, 'O', position)
-            display_board(the_board)
-            if check_for_win(the_board, 'O'):
+            game_on = False
+        turn = 'computer'
+        while game_on:
+
+            if turn == 'computer':
+                # show the board
                 display_board(the_board)
-                print('The player has won!!')
-                game_on = False
+                # Chose a position
+                # position = comp_return_position(the_board)
+                # place the marker at the
+
+                # place_marker(the_board, 'X', position)
+                comp_move(the_board)
+                display_board(the_board)
+                # Check if they won
+                if check_for_win(the_board, 'X'):
+                    display_board(the_board)
+                    print('The computer has won!!')
+                    game_on = False
+                    break
+                    # Check if there is a tie
+
+                elif full_board_check(the_board):
+                    display_board(the_board)
+                    print("TIE game !!!")
+                    game_on = False
+                else:
+                    turn = 'player'
+
+            # Player turn
+            else:
+                display_board(the_board)
+                # Chose a position
+                position = player_choise(the_board)
+                place_marker(the_board, 'O', position)
+                display_board(the_board)
+                if check_for_win(the_board, 'O'):
+                    display_board(the_board)
+                    print('The player has won!!')
+                    game_on = False
+                    break
                 if full_board_check(the_board):
                     display_board(the_board)
                     print("TIE game !!!")
                     game_on = False
+                    break
                 else:
                     game_on = True
 
                     turn = 'computer'
-            turn = 'computer'
+            # turn = 'computer'
 
-    if not reply():
-        break
+        if not reply():
+            break
 
-    # BRAK OUT OF THE WHILE LOOP ON reply()
+  #  BRAKe OUT OF THE WHILE LOOP ON reply()
 
-#
-# display_board(board)
-# print(player_choise(board))
-#
-# display_board(board)
-# print(full_board_check(board))
-# print(check_for_win(board, 'X'))
+
+if __name__ == '__main__':
+    app()
