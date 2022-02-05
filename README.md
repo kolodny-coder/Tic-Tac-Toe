@@ -11,6 +11,14 @@ Install my-project with git clone
 ```bash
 git clone git@github.com:kolodny-coder/Tic-Tac-Toe.git
 ```
+Or install and run with docker run the following:
+```bash
+ docker pull 7194433/tictactoe:tictactoe 
+```
+
+```bash
+ docker run -it 7194433/tictactoe:tictactoe
+```
 
 ## Quickstart
 
