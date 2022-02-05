@@ -1,12 +1,13 @@
 def display_board(board):
     print('\n' * 1)
 
-    print(board[1] + ' | ' + board[2] + ' | ' + board[3])
-    print(board[4] + ' | ' + board[5] + ' | ' + board[6])
-    print(board[7] + ' | ' + board[8] + ' | ' + board[9])
+    print('          ' + board[1] + ' | ' + board[2] + ' | ' + board[3])
+    print('          ' + board[4] + ' | ' + board[5] + ' | ' + board[6])
+    print('          ' + board[7] + ' | ' + board[8] + ' | ' + board[9])
 
 
 def place_marker(board, mark, position):
+    board[position] = mark
     board[position] = mark
 
 
@@ -46,12 +47,13 @@ def player_choice(board):
     position = 0
     while position not in [1, 2, 3, 4, 5, 6, 7, 8, 9] or not space_check(board, position):
         position = int(input('Please choose a free position (1-9) '))
+
     return position
 
 
 def reply():
-    choise = input('Do YOU want to play again? Y or N ').upper()
-    return choise == 'Y'
+    choice = int(input('Do YOU want to play again? 1 for yes 2 for no '))
+    return choice == 1
 
 
 def comp_move(board):

@@ -10,12 +10,8 @@ def app():
         the_board = ['#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
 
         # GAME PLAY
-        play_game = input('Ready to play ? y or n  ')
 
-        if play_game == 'y':
-            game_on = True
-        else:
-            game_on = False
+        game_on = True
         turn = 'computer'
         while game_on:
 
