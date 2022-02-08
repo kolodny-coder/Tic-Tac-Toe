@@ -11,6 +11,7 @@ def display_board(board):
     print('        --------------')
     print('          ' + board[7] + ' | ' + board[8] + ' | ' + board[9])
     print('            |   |')
+    print('            |   |')
 
 
 def place_marker(board, mark, position):
@@ -111,4 +112,5 @@ def minmax(board, depth, is_maximazing):
 
         return best_score
 
-display_board(['#', 'x', 'x', 'o', 'o', 'o', 'o','o', 'x', 'x'])
+display_board(['#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '])
+# display_board(['#', 'x', 'x', 'o', 'o', 'o', 'o','o', 'x', 'x'])
