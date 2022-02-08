@@ -2,6 +2,7 @@ def display_board(board):
     print('\n' * 1)
 
     print('          ' + board[1] + ' | ' + board[2] + ' | ' + board[3])
+    print('          ' +'---  |  ---  |  ---')
     print('          ' + board[4] + ' | ' + board[5] + ' | ' + board[6])
     print('          ' + board[7] + ' | ' + board[8] + ' | ' + board[9])
 
@@ -103,3 +104,5 @@ def minmax(board, depth, is_maximazing):
                 best_score = min(score, best_score)
 
         return best_score
+
+display_board([' ']*10)
