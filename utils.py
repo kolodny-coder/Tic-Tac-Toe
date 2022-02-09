@@ -9,8 +9,8 @@ def display_board(board):
     print('          ' + board[4] + ' | ' + board[5] + ' | ' + board[6])
     print('            |   |')
     print('        --------------')
-    print('          ' + board[7] + ' | ' + board[8] + ' | ' + board[9])
     print('            |   |')
+    print('          ' + board[7] + ' | ' + board[8] + ' | ' + board[9])
     print('            |   |')
 
 
@@ -54,7 +54,7 @@ def check_for_draw(board):
 def player_choice(board):
     position = 0
     while position not in [1, 2, 3, 4, 5, 6, 7, 8, 9] or not space_check(board, position):
-        position = int(input('Please choose a free position (1-9) '))
+        position = int(input('Please choose a free position (1-9)\n\n '))
 
     return position
 
@@ -112,5 +112,21 @@ def minmax(board, depth, is_maximazing):
 
         return best_score
 
-display_board(['#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '])
+
+def game_participants():
+    while True:
+        game_participates = int(input('please choose (1-3)\n 1. player vs bot\n 2. human vs player\n 3. bot vs bot '))
+        if game_participates == 1:
+            print('human vs bot\n')
+            return 1
+        elif game_participates == 2:
+            print('human vs human\n')
+            return 2
+        elif game_participates == 3:
+            print('bot vs bot\n')
+            return 3
+        else:
+            print('You chose invalid option please try again \n\n')
+
+# display_board(['#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '])
 # display_board(['#', 'x', 'x', 'o', 'o', 'o', 'o','o', 'x', 'x'])

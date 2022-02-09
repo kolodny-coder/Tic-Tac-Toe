@@ -1,5 +1,5 @@
 import app
-import mock
+from unittest import mock
 import unittest
 
 test_board_cross_the_top = ['#', 'X', 'X', 'X', '4', '5', '6', '7', '8', '9']
