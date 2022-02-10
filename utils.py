@@ -64,14 +64,14 @@ def reply():
     return choice == 1
 
 
-def comp_move(board):
+def comp_move(board, player1_mark, player2_mark):
     best_score = -1000
     best_move = 0
 
     for indx, key in enumerate(board):
         if key == ' ':
             board[indx] = 'X'
-            score = minmax(board, 0, False)
+            score = minmax(board, 0, False, player1_mark, player2_mark)
             board[indx] = ' '
             if score > best_score:
                 best_score = score
@@ -80,10 +80,10 @@ def comp_move(board):
     return
 
 
-def minmax(board, depth, is_maximazing):
-    if check_for_win(board, 'X'):
+def minmax(board, depth, is_maximazing, player1_mark, player2_mark):
+    if check_for_win(board, player1_mark):
         return 100
-    elif check_for_win(board, 'O'):
+    elif check_for_win(board, player2_mark):
         return -100
     elif check_for_draw(board):
         return 0
@@ -93,8 +93,8 @@ def minmax(board, depth, is_maximazing):
 
         for indx, key in enumerate(board):
             if key == ' ':
-                board[indx] = 'X'
-                score = minmax(board, 0, False)
+                board[indx] = player1_mark
+                score = minmax(board, 0, False, player1_mark, player2_mark)
                 board[indx] = ' '
                 best_score = max(score, best_score)
 
@@ -105,8 +105,8 @@ def minmax(board, depth, is_maximazing):
 
         for indx, key in enumerate(board):
             if key == ' ':
-                board[indx] = 'O'
-                score = minmax(board, 0, True)
+                board[indx] = player2_mark
+                score = minmax(board, 0, True, player1_mark, player2_mark)
                 board[indx] = ' '
                 best_score = min(score, best_score)
 

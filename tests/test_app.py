@@ -50,28 +50,25 @@ class TestStringMethods(unittest.TestCase):
         self.assertTrue(result)
 
     def test_minmax_x_wins(self):
-        result = app.minmax(['#', '1', '2', 'X', '4', '0', '6', 'X', '3', 'X'], 0, True)
+        result = app.minmax(['#', ' ', ' ', ' ', ' ', 'O', ' ', 'X', ' ', 'X'], 0, True, 'X', 'O')
         self.assertEqual(result, 100)
 
     def test_minmax_x_wins2(self):
-        result = app.minmax(['#', 'X', ' ', 'O', ' ', 'O', ' ', ' ', ' ', 'X'], 0, True)
+        result = app.minmax(['#', 'X', ' ', 'O', ' ', 'O', ' ', ' ', ' ', 'X'], 0, True, 'X', 'O')
         self.assertEqual(result, 100)
 
     def test_minmax_o_wins(self):
-        result = app.minmax(['#', '1', '2', 'O', '4', '0', '6', 'O', '3', 'O'], 0, True)
+        result = app.minmax(['#', 'X', ' ', 'O', ' ', 'X', ' ', ' ', 'O', ' '], 0, False, 'X', 'O')
         self.assertEqual(result, -100)
 
     def test_minmax_draw(self):
-        result = app.minmax(['#', 'X', 'O', 'X', 'X', 'O', 'O', 'O', 'X', 'X'], 0, True)
+        result = app.minmax(['#', 'X', 'O', 'X', 'X', 'O', 'O', 'O', 'X', 'X'], 0, True, 'X', 'O')
         self.assertEqual(result, 0)
 
     def test_minmax_draw2(self):
-        result = app.minmax(['#', 'X', 'O', 'O', 'O', 'O', ' ', 'X', ' ', 'X'], 0, True)
+        result = app.minmax(['#', 'X', 'O', 'O', 'O', 'O', ' ', 'X', ' ', 'X'], 0, True, 'X', 'O')
         self.assertEqual(result, 100)
 
-    def test_comp_move(self):
-        result = app.comp_move(['#', 'X', 'O', ' ', 'X', 'O', 'O', ' ', 'X', 'X'])
-        self.assertEqual(result, 0)
 
     @patch('builtins.input')
     def test_game_participants(self, input_mock: MagicMock):

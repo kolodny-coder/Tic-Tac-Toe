@@ -30,7 +30,7 @@ def app():
 
                 # Chose a position
                 time.sleep(0.5)
-                comp_move(the_board)
+                comp_move(the_board, player1_mark, player2_mark)
                 display_board(the_board)
                 # Check if they won
                 if check_for_win(the_board, player1_mark):
