@@ -6,7 +6,7 @@ def app():
     print('Welocome to Tic Tac Toe')
 
     while True:
-        # PLAY THE GAME
+        # PLAY THE GAME1
 
         game_mode = game_participants()
         marks_dict = choose_marks()
@@ -26,14 +26,17 @@ def app():
 
             if turn == 'computer':
                 # show the board
+                print('\n'* 5)
                 display_board(the_board)
 
                 # Chose a position
                 time.sleep(0.5)
                 comp_move(the_board, player1_mark, player2_mark)
+                print('\n' * 5)
                 display_board(the_board)
                 # Check if they won
                 if check_for_win(the_board, player1_mark):
+                    print('\n' * 5)
                     display_board(the_board)
                     print('The computer has won!!\n\n')
                     break

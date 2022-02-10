@@ -1,18 +1,17 @@
 def display_board(board):
     print('\n' * 1)
-    print('            |   |')
-    print('          ' + board[1] + ' | ' + board[2] + ' | ' + board[3])
-    print('            |   |')
-    print('        --------------')
-    print('            |   |')
+    print('            |   |' + '\t\t\t' + '             |   |' )
+    print('          ' + board[1] + ' | ' + board[2] + ' | ' + board[3] +  '\t\t\t' + '           1 | 2 | 3')
+    print('            |   |' + '\t\t\t' + '             |   |' )
+    print('        --------------' + '\t\t\t' + '     --------------')
+    print('            |   |' + '\t\t\t' + '             |   |' )
 
-    print('          ' + board[4] + ' | ' + board[5] + ' | ' + board[6])
-    print('            |   |')
-    print('        --------------')
-    print('            |   |')
-    print('          ' + board[7] + ' | ' + board[8] + ' | ' + board[9])
-    print('            |   |')
-
+    print('          ' + board[4] + ' | ' + board[5] + ' | ' + board[6] +  '\t\t\t' + '           4 | 5 | 6')
+    print('            |   |' + '\t\t\t' + '             |   |' )
+    print('        --------------' + '\t\t\t' + '     --------------')
+    print('            |   |' + '\t\t\t' + '             |   |' )
+    print('          ' + board[7] + ' | ' + board[8] + ' | ' + board[9] +  '\t\t\t' + '           7 | 8 | 9')
+    print('            |   |' + '\t\t\t' + '             |   |' )
 
 def place_marker(board, mark, position):
     board[position] = mark
@@ -70,13 +69,13 @@ def comp_move(board, player1_mark, player2_mark):
 
     for indx, key in enumerate(board):
         if key == ' ':
-            board[indx] = 'X'
+            board[indx] = player1_mark
             score = minmax(board, 0, False, player1_mark, player2_mark)
             board[indx] = ' '
             if score > best_score:
                 best_score = score
                 best_move = indx
-    place_marker(board, 'X', best_move)
+    place_marker(board, player1_mark, best_move)
     return
 
 
