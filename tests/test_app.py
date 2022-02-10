@@ -81,6 +81,21 @@ class TestStringMethods(unittest.TestCase):
                 res = utils.game_participants()
                 self.assertEqual(res, choose_option)
 
+    @patch('builtins.input')
+    def test_choose_marks(self, input_mock: MagicMock):
+        with self.subTest('test game choose marks function happy path option 1'):
+            input_mock.return_value = 1
+            res = utils.choose_marks()
+            self.assertEqual(res, {'player1_mark': 'X', 'player2_mark': 'O'})
+
+        with self.subTest('test game choose marks function happy path option 2'):
+                input_mock.return_value = 2
+                res = utils.choose_marks()
+                self.assertEqual(res, {'player1_mark': 'O',
+                                       'player2_mark': 'X'})
+
+
+
 
 if __name__ == '__main__':
     unittest.main()

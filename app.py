@@ -7,26 +7,12 @@ def app():
 
     while True:
         # PLAY THE GAME
-        while True:
-            game_participates()
-            # if game_participates == 1:
-            #     print('human vs bot\n')
-            #     player1_choice = int(input('choose your mark (1-2):\n 1. X\n 2. O\n\n'))
-            #     if player1_choice == 1:
-            #         players1_mark = 'X'
-            #         bot_mark = 'O'
-            #         break
-            #     elif player1_choice == 2:
-            #         players1_mark = 'X'
-            #         bot_mark = 'O'
-            #         break
-            #     else:
-            #         print('you chose invalid option please try agian :)\n')
 
+        game_mode = game_participants()
+        marks_dict = choose_marks()
+        player1_mark = marks_dict['player1_mark']
+        player2_mark = marks_dict['player2_mark']
 
-
-
-            print('human vs bot')
 
 
     # SET EVERYTHING UP (BOARD)
@@ -43,11 +29,11 @@ def app():
                 display_board(the_board)
 
                 # Chose a position
-                time.sleep(2)
+                time.sleep(0.5)
                 comp_move(the_board)
                 display_board(the_board)
                 # Check if they won
-                if check_for_win(the_board, 'X'):
+                if check_for_win(the_board, player1_mark):
                     display_board(the_board)
                     print('The computer has won!!\n\n')
                     break
@@ -63,8 +49,8 @@ def app():
             else:
                 # Chose a position
                 position = player_choice(the_board)
-                place_marker(the_board, 'O', position)
-                if check_for_win(the_board, 'O'):
+                place_marker(the_board, player2_mark, position)
+                if check_for_win(the_board, player2_mark):
                     display_board(the_board)
                     print('The player has won!!')
                     break

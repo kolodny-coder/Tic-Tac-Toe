@@ -128,5 +128,20 @@ def game_participants():
         else:
             print('You chose invalid option please try again \n\n')
 
+
+def choose_marks():
+    while True:
+        chosen_mark = int(input('Please choose your mark (1-2)\n 1. O\n 2. X\n\n  '))
+        if chosen_mark == 1:
+            print('you\'ll Play the O\'s and your opponent will play the X\'s  ')
+            return {'player1_mark': 'X',
+                    'player2_mark': 'O'}
+        elif chosen_mark == 2:
+            print('you\'ll Play the X\'s  and your opponent will play the O\'s  ')
+            return {'player1_mark': 'O',
+                    'player2_mark': 'X'}
+        else:
+            print('You Picked invalid option please pick (1-2)')
+
 # display_board(['#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '])
 # display_board(['#', 'x', 'x', 'o', 'o', 'o', 'o','o', 'x', 'x'])
