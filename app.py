@@ -21,7 +21,7 @@ def app():
         # GAME PLAY
 
         game_on = True
-        turn = 'computer'
+        turn = 'player1'
         while game_on:
 
             if turn == 'computer':
@@ -50,22 +50,43 @@ def app():
 
             # Player turn
             else:
-                # Chose a position
-                position = player_choice(the_board)
-                place_marker(the_board, player2_mark, position)
-                if check_for_win(the_board, player2_mark):
+                if turn == 'player1':
+                    # Chose a position
                     display_board(the_board)
-                    print('The player has won!!')
-                    break
+                    position = player_choice(the_board)
+                    place_marker(the_board, player2_mark, position)
+                    if check_for_win(the_board, player2_mark):
+                        display_board(the_board)
+                        print('The player has won!!')
+                        break
 
-                if full_board_check(the_board):
+                    if full_board_check(the_board):
+                        display_board(the_board)
+                        print("TIE game !!!")
+                        break
+                    else:
+                        game_on = True
+
+                        turn = 'player2'
+                if turn == 'player2':
+                    # Chose a position
                     display_board(the_board)
-                    print("TIE game !!!")
-                    break
-                else:
-                    game_on = True
+                    position = player_choice(the_board)
+                    place_marker(the_board, player1_mark, position)
+                    if check_for_win(the_board, player1_mark):
+                        display_board(the_board)
+                        print('The player has won!!')
+                        break
 
-                    turn = 'computer'
+                    if full_board_check(the_board):
+                        display_board(the_board)
+                        print("TIE game !!!")
+                        break
+                    else:
+                        game_on = True
+
+                        turn = 'player1'
+
 
         if not reply():
             break
