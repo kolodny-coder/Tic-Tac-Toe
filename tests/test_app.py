@@ -1,6 +1,7 @@
 import app
-import mock
+from unittest.mock import MagicMock, patch
 import unittest
+import utils
 
 test_board_cross_the_top = ['#', 'X', 'X', 'X', '4', '5', '6', '7', '8', '9']
 test_board_cross_the_middle = ['#', '1', '2', '3', 'X', 'X', 'X', '7', '8', '9']
@@ -72,15 +73,13 @@ class TestStringMethods(unittest.TestCase):
         result = app.comp_move(['#', 'X', 'O', ' ', 'X', 'O', 'O', ' ', 'X', 'X'])
         self.assertEqual(result, 0)
 
-    def test_game_participents(self):
-        with mock.patch('builtins.input', return_value=1):
-            assert game_participents() == 1
-
-        with mock.patch('builtins.input', return_value=2):
-            assert game_participents() == 2
-
-        # with mock.patch('builtins.input', return_value="no"):
-        #     assert yes_or_no() == "Awesome!"
+    @patch('builtins.input')
+    def test_game_participants(self, input_mock: MagicMock):
+        with self.subTest('test game participants function happy path'):
+            for choose_option in [1, 2, 3]:
+                input_mock.return_value = choose_option
+                res = utils.game_participants()
+                self.assertEqual(res, choose_option)
 
 
 if __name__ == '__main__':
