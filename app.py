@@ -21,19 +21,14 @@ def app():
         # GAME PLAY
 
         game_on = True
-        turn = 'player1'
+        turn = 'computer'
         while game_on:
 
             if turn == 'computer':
-                # show the board
-                print('\n'* 5)
-                display_board(the_board)
 
-                # Chose a position
-                time.sleep(0.5)
-                comp_move(the_board, player1_mark, player2_mark)
-                print('\n' * 5)
-                display_board(the_board)
+
+                bot_turn(the_board, player1_mark, player2_mark)
+
                 # Check if they won
                 if check_for_win(the_board, player1_mark):
                     print('\n' * 5)
@@ -46,11 +41,11 @@ def app():
                     print("TIE game !!!\n\n")
                     game_on = False
                 else:
-                    turn = 'player'
+                    turn = 'player2'
 
             # Player turn
             else:
-                if turn == 'player1':
+                if turn == 'player2':
                     # Chose a position
                     display_board(the_board)
                     position = player_choice(the_board)
@@ -67,26 +62,26 @@ def app():
                     else:
                         game_on = True
 
-                        turn = 'player2'
-                if turn == 'player2':
-                    # Chose a position
-                    display_board(the_board)
-                    position = player_choice(the_board)
-                    place_marker(the_board, player1_mark, position)
-                    if check_for_win(the_board, player1_mark):
-                        display_board(the_board)
-                        print('The player has won!!')
-                        break
-
-                    if full_board_check(the_board):
-                        display_board(the_board)
-                        print("TIE game !!!")
-                        break
-                    else:
-                        game_on = True
-
-                        turn = 'player1'
-
+                        turn = 'computer'
+                # if turn == 'player2':
+                #     # Chose a position
+                #     display_board(the_board)
+                #     position = player_choice(the_board)
+                #     place_marker(the_board, player1_mark, position)
+                #     if check_for_win(the_board, player1_mark):
+                #         display_board(the_board)
+                #         print('The player has won!!')
+                #         break
+                #
+                #     if full_board_check(the_board):
+                #         display_board(the_board)
+                #         print("TIE game !!!")
+                #         break
+                #     else:
+                #         game_on = True
+                #
+                #         turn = 'player1'
+                #
 
         if not reply():
             break

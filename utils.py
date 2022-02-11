@@ -1,3 +1,5 @@
+
+import time
 def display_board(board):
     print('\n' * 1)
     print('            |   |' + '\t\t\t' + '             |   |' )
@@ -141,6 +143,15 @@ def choose_marks():
                     'player2_mark': 'X'}
         else:
             print('You Picked invalid option please pick (1-2)')
+
+def bot_turn(board, player1_mark, player2_mark):
+    print('\n' * 5)
+    display_board(board)
+    time.sleep(0.5)
+    comp_move(board, player1_mark, player2_mark)
+    print('\n' * 5)
+    display_board(board)
+
 
 # display_board(['#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '])
 # display_board(['#', 'x', 'x', 'o', 'o', 'o', 'o','o', 'x', 'x'])
