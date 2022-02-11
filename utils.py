@@ -125,7 +125,7 @@ def game_participants():
             return [2, 'player2', 'human1']
         elif game_participates == 3:
             print('bot vs bot\n')
-            return 3
+            return [3, 'bot', 'bot2']
         else:
             print('You chose invalid option please try again \n\n')
 
@@ -147,11 +147,7 @@ def choose_marks():
 def bot_turn(board, player1_mark, player2_mark):
     print('\n' * 5)
     display_board(board)
-    time.sleep(0.5)
+    time.sleep(1)
     comp_move(board, player1_mark, player2_mark)
     print('\n' * 5)
     display_board(board)
-
-
-# display_board(['#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '])
-# display_board(['#', 'x', 'x', 'o', 'o', 'o', 'o','o', 'x', 'x'])

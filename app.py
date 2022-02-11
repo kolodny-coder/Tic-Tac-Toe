@@ -25,7 +25,10 @@ def app():
             turn = 'bot'
         if game_mode[0] == 2:
             turn = 'player1'
+        if game_mode[0] == 3:
+            turn = 'bot'
         player_mark = player2_mark
+        bot_mark = player1_mark
         count = 0
         while game_on:
 
@@ -46,7 +49,19 @@ def app():
                     print("TIE game !!!\n\n")
                     game_on = False
                 else:
-                    turn = 'player2'
+                    if game_mode[0] == 1:
+                        turn = 'player2'
+                    elif game_mode[0] == 3:
+                        turn = 'bot'
+                        count += 1
+                        players_marks_list = [player2_mark, player1_mark]
+                        # player2_mark = players_marks_list[count % 2]
+                        # player1_mark = players_marks_list[(count + 1)  % 2]
+                        temp = player1_mark
+                        player1_mark = player2_mark
+                        player2_mark = temp
+
+
 
             # Player turn
             else:
