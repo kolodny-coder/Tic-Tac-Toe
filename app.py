@@ -3,7 +3,7 @@ from utils import *
 
 # WHILE LOOP TO KEEP RUNNING THE GAME
 def app():
-    print('Welocome to Tic Tac Toe')
+    print('Welcome to Tic Tac Toe')
 
     while True:
         # PLAY THE GAME
@@ -46,9 +46,9 @@ def app():
                     print("TIE game !!!\n\n")
                     game_on = False
                 else:
-                    if game_mode[0] == 1:
+                    if game_mode == 1:
                         turn = 'player2'
-                    elif game_mode[0] == 3:
+                    elif game_mode == 3:
                         turn = 'bot'
                         temp = player1_mark
                         player1_mark = player2_mark
@@ -74,11 +74,11 @@ def app():
                     else:
                         game_on = True
 
-                        if game_mode[0] == 1:
+                        if game_mode == 1:
                             turn = 'bot'
 
                             player_mark = player2_mark
-                        elif game_mode[0] == 2:
+                        elif game_mode == 2:
                             turn = 'player1'
                             count += 1
                             players_marks_list = [player2_mark, player1_mark]
