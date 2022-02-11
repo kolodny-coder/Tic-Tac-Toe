@@ -1,31 +1,29 @@
 from utils import *
-import time
+
 
 # WHILE LOOP TO KEEP RUNNING THE GAME
 def app():
     print('Welocome to Tic Tac Toe')
 
     while True:
-        # PLAY THE GAME1
+        # PLAY THE GAME
 
         game_mode = game_participants()
         marks_dict = choose_marks()
         player1_mark = marks_dict['player1_mark']
         player2_mark = marks_dict['player2_mark']
 
-
-
-    # SET EVERYTHING UP (BOARD)
+        # SET EVERYTHING UP (BOARD)
         the_board = ['#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
 
         # GAME PLAY
-
+        turn = 'unknown yet'
         game_on = True
-        if game_mode[0] == 1:
+        if game_mode == 1:
             turn = 'bot'
-        if game_mode[0] == 2:
+        if game_mode == 2:
             turn = 'player1'
-        if game_mode[0] == 3:
+        if game_mode == 3:
             turn = 'bot'
         player_mark = player2_mark
         bot_mark = player1_mark
@@ -33,7 +31,6 @@ def app():
         while game_on:
 
             if turn == 'bot':
-
 
                 bot_turn(the_board, player1_mark, player2_mark)
 
@@ -53,14 +50,9 @@ def app():
                         turn = 'player2'
                     elif game_mode[0] == 3:
                         turn = 'bot'
-                        count += 1
-                        players_marks_list = [player2_mark, player1_mark]
-                        # player2_mark = players_marks_list[count % 2]
-                        # player1_mark = players_marks_list[(count + 1)  % 2]
                         temp = player1_mark
                         player1_mark = player2_mark
                         player2_mark = temp
-
 
 
             # Player turn
@@ -90,8 +82,7 @@ def app():
                             turn = 'player1'
                             count += 1
                             players_marks_list = [player2_mark, player1_mark]
-                            player_mark= players_marks_list[count % 2]
-
+                            player_mark = players_marks_list[count % 2]
 
         if not reply():
             break

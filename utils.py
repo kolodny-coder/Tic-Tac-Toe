@@ -119,13 +119,13 @@ def game_participants():
         game_participates = int(input('please choose (1-3)\n 1. player vs bot\n 2. human vs player\n 3. bot vs bot '))
         if game_participates == 1:
             print('human vs bot\n')
-            return [1, 'bot', 'human1']
+            return 1
         elif game_participates == 2:
             print('human vs human\n')
-            return [2, 'player2', 'human1']
+            return 2
         elif game_participates == 3:
             print('bot vs bot\n')
-            return [3, 'bot', 'bot2']
+            return 3
         else:
             print('You chose invalid option please try again \n\n')
 
