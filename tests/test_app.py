@@ -91,6 +91,14 @@ class TestStringMethods(unittest.TestCase):
                 self.assertEqual(res, {'player1_mark': 'O',
                                        'player2_mark': 'X'})
 
+    @patch('builtins.input')
+    def test_game_participants_happy_path(self, input_mock: MagicMock):
+        with self.subTest('test game choose marks function happy path option 1'):
+            input_mock.return_value = 2
+            res = utils.game_participants()
+            self.assertEqual(res, {'human vs human'})
+
+
 
 
 
