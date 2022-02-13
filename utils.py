@@ -5,12 +5,12 @@ def display_board(board):
     print('            |   |' + '\t\t\t' + '             |   |' )
     print('          ' + board[1] + ' | ' + board[2] + ' | ' + board[3] +  '\t\t\t' + '           1 | 2 | 3')
     print('            |   |' + '\t\t\t' + '             |   |' )
-    print('        --------------' + '\t\t\t' + '     --------------')
+    print('        --------------' + '\t\t\t' + '        --------------')
     print('            |   |' + '\t\t\t' + '             |   |' )
 
     print('          ' + board[4] + ' | ' + board[5] + ' | ' + board[6] +  '\t\t\t' + '           4 | 5 | 6')
     print('            |   |' + '\t\t\t' + '             |   |' )
-    print('        --------------' + '\t\t\t' + '     --------------')
+    print('        --------------' + '\t\t\t' + '        --------------')
     print('            |   |' + '\t\t\t' + '             |   |' )
     print('          ' + board[7] + ' | ' + board[8] + ' | ' + board[9] +  '\t\t\t' + '           7 | 8 | 9')
     print('            |   |' + '\t\t\t' + '             |   |' )
@@ -147,7 +147,7 @@ def choose_marks():
 def bot_turn(board, player1_mark, player2_mark):
     print('\n' * 5)
     display_board(board)
-    time.sleep(1)
+    time.sleep(0.5)
     comp_move(board, player1_mark, player2_mark)
     print('\n' * 5)
     display_board(board)

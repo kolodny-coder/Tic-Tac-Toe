@@ -13,11 +13,11 @@ git clone git@github.com:kolodny-coder/Tic-Tac-Toe.git
 ```
 Or install and run with docker run the following:
 ```bash
- docker pull 7194433/tictactoe:tictactoe 
+  docker pull 7194433/tictactoe:2  
 ```
 
 ```bash
- docker run -it 7194433/tictactoe:tictactoe
+ docker run -it 7194433/tictactoe:2  
 ```
 
 ## Quickstart
