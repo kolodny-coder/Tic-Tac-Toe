@@ -2,6 +2,7 @@ import app
 from unittest.mock import MagicMock, patch
 import unittest
 import utils
+from io import StringIO
 
 test_board_cross_the_top = ['#', 'X', 'X', 'X', '4', '5', '6', '7', '8', '9']
 test_board_cross_the_middle = ['#', '1', '2', '3', 'X', 'X', 'X', '7', '8', '9']
@@ -93,10 +94,11 @@ class TestStringMethods(unittest.TestCase):
 
 
     @patch('builtins.input')
-    def test_game_participants(self, input_mock: MagicMock):
+    def test_game_participants_printeed(self, input_mock: MagicMock):
         with patch('sys.stdout', new=StringIO()) as fakeOutput:
-            input_mock.side_effect = [1]
+            input_mock.return_value = 1
             app.app()
+            input_mock.return_value = 1
             self.assertEqual(fakeOutput.getvalue().strip()[0], 'human vs human')
 
 
