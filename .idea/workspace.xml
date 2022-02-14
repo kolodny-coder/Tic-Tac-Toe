@@ -4,6 +4,7 @@
     <list default="true" id="3106c0dd-330c-499f-ba60-6e3305dcfcfe" name="Changes" comment="feat(human vs human): WIP">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_app.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_app.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -60,7 +61,7 @@
       <recent name="$PROJECT_DIR$/app" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.app">
+  <component name="RunManager" selected="Python tests.Python tests for test_app.TestStringMethods.test_spase_check">
     <configuration name="app" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Tic-Tac-Toe" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -131,7 +132,7 @@
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for test_app.TestStringMethods.test_minmax_o_wins" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests for test_app.TestStringMethods.test_spase_check" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="Tic-Tac-Toe" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -141,7 +142,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_app.TestStringMethods.test_minmax_o_wins&quot;" />
+      <option name="_new_target" value="&quot;test_app.TestStringMethods.test_spase_check&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
@@ -160,20 +161,20 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python tests.Python tests in /" />
-      <item itemvalue="Python tests.Python tests for test_app.TestStringMethods.test_minmax_o_wins" />
-      <item itemvalue="Python tests.Python tests for test_app.TestStringMethods" />
-      <item itemvalue="Python tests.Python tests for test_app.TestStringMethods.test_comp_move" />
       <item itemvalue="Python.app" />
       <item itemvalue="Python.utils" />
+      <item itemvalue="Python tests.Python tests in /" />
+      <item itemvalue="Python tests.Python tests for test_app.TestStringMethods" />
+      <item itemvalue="Python tests.Python tests for test_app.TestStringMethods.test_comp_move" />
+      <item itemvalue="Python tests.Python tests for test_app.TestStringMethods.test_spase_check" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python tests.Python tests for test_app.TestStringMethods.test_spase_check" />
         <item itemvalue="Python.app" />
         <item itemvalue="Python.utils" />
         <item itemvalue="Python tests.Python tests for test_app.TestStringMethods" />
         <item itemvalue="Python tests.Python tests for test_app.TestStringMethods.test_comp_move" />
-        <item itemvalue="Python tests.Python tests for test_app.TestStringMethods.test_minmax_o_wins" />
       </list>
     </recent_temporary>
   </component>

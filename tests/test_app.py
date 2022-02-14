@@ -132,14 +132,24 @@ class TestStringMethods(unittest.TestCase):
         self.assertEqual(res, {'player1_mark': 'O',
                                'player2_mark': 'X'})
 
+    def test_space_check_free_spot(self):
+        board = ['#', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+        res = utils.space_check(board, 3)
+        self.assertTrue(res)
+
+    def test_space_check_ccupied_spot_x_mark(self):
+        board = ['#', '1', '2', 'X', '4', '5', '6', '7', '8', '9']
+        res = utils.space_check(board, 3)
+        self.assertFalse(res)
+
+    def test_space_check_ccupied_spot_O_mark(self):
+        board = ['#', '1', '2', 'X', 'O', '5', '6', '7', '8', '9']
+        res = utils.space_check(board, 4)
+        self.assertFalse(res)
 
 
-    # @patch('builtins.input')
-    # def test_bot_vs_bot_always_ends_with_draw(self, input_mock: MagicMock):
-    #     with patch('sys.stdout', new=StringIO()) as fakeOutput:
-    #         input_mock.side_effect = [3, 1, 2]
-    #         app.app()
-    #         self.assertEqual(fakeOutput.getvalue().strip()[-13:], '\nTIE game !!!')
+
+
 
 
 if __name__ == '__main__':
