@@ -80,15 +80,29 @@ class TestStringMethods(unittest.TestCase):
 
     @patch('builtins.input')
     def test_game_participant_sad_path_insert_string_instead_of_int(self, input_mock: MagicMock):
-        input_mock.side_effect = ['k', 1]
+        input_mock.side_effect = ['k', 'h', 1]
         res = utils.game_participants()
         self.assertEqual(res, 1)
 
     @patch('builtins.input')
     def test_choose_marks_sad_path_insert_string_instead_of_int(self, input_mock: MagicMock):
-        input_mock.side_effect = ['k', 1]
+        input_mock.side_effect = ['k', '1']
         res = utils.choose_marks()
         self.assertEqual(res, {'player1_mark': 'X', 'player2_mark': 'O'})
+
+    @patch('builtins.input')
+    def test_player_choice_sad_path_insert_string_instead_of_int(self, input_mock: MagicMock):
+        input_mock.side_effect = ['k', '1']
+        res = utils.player_choice([' ']*10)
+        self.assertEqual(res, 1)
+
+    @patch('builtins.input')
+    def test_reply_sad_path_insert_string_instead_of_int(self, input_mock: MagicMock):
+        input_mock.side_effect = ['k', '1']
+        res = utils.reply()
+        self.assertEqual(res, 1)
+
+
 
     @patch('builtins.input')
     def test_choose_marks(self, input_mock: MagicMock):
