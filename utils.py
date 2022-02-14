@@ -116,7 +116,10 @@ def minmax(board, depth, is_maximazing, player1_mark, player2_mark):
 
 def game_participants():
     while True:
-        game_participates = int(input('please choose (1-3)\n 1. player vs bot\n 2. human vs player\n 3. bot vs bot '))
+        try:
+            game_participates = int(input('please choose (1-3)\n 1. player vs bot\n 2. human vs player\n 3. bot vs bot '))
+        except ValueError:
+            game_participates = 'invalid value'
         if game_participates == 1:
             print('human vs bot\n')
             return 1
@@ -127,12 +130,16 @@ def game_participants():
             print('bot vs bot\n')
             return 3
         else:
-            print('You chose invalid option please try again \n\n')
+            print('\n\nYou chose invalid option please choose a number between 1 - 3 try again \n\n')
 
 
 def choose_marks():
     while True:
-        chosen_mark = int(input('Please choose your mark (1-2)\n 1. O\n 2. X\n\n  '))
+        try:
+            chosen_mark = int(input('Please choose your mark (1-2)\n 1. O\n 2. X\n\n  '))
+        except ValueError:
+            chosen_mark = 'invalid value'
+
         if chosen_mark == 1:
             print('you\'ll Play the O\'s and your opponent will play the X\'s  ')
             return {'player1_mark': 'X',
@@ -142,7 +149,7 @@ def choose_marks():
             return {'player1_mark': 'O',
                     'player2_mark': 'X'}
         else:
-            print('You Picked invalid option please pick (1-2)')
+            print('You Picked invalid option please pick int between (1-2)')
 
 def bot_turn(board, player1_mark, player2_mark):
     print('\n' * 5)

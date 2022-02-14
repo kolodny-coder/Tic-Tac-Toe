@@ -1,6 +1,7 @@
-import app
-from unittest.mock import MagicMock, patch
 import unittest
+from unittest.mock import MagicMock, patch
+
+import app
 import utils
 
 test_board_cross_the_top = ['#', 'X', 'X', 'X', '4', '5', '6', '7', '8', '9']
@@ -69,7 +70,6 @@ class TestStringMethods(unittest.TestCase):
         result = app.minmax(['#', 'X', 'O', 'O', 'O', 'O', ' ', 'X', ' ', 'X'], 0, True, 'X', 'O')
         self.assertEqual(result, 100)
 
-
     @patch('builtins.input')
     def test_game_participants(self, input_mock: MagicMock):
         with self.subTest('test game participants function happy path'):
@@ -79,6 +79,18 @@ class TestStringMethods(unittest.TestCase):
                 self.assertEqual(res, choose_option)
 
     @patch('builtins.input')
+    def test_game_participant_sad_path_insert_string_instead_of_int(self, input_mock: MagicMock):
+        input_mock.side_effect = ['k', 1]
+        res = utils.game_participants()
+        self.assertEqual(res, 1)
+
+    @patch('builtins.input')
+    def test_choose_marks_sad_path_insert_string_instead_of_int(self, input_mock: MagicMock):
+        input_mock.side_effect = ['k', 1]
+        res = utils.choose_marks()
+        self.assertEqual(res, {'player1_mark': 'X', 'player2_mark': 'O'})
+
+    @patch('builtins.input')
     def test_choose_marks(self, input_mock: MagicMock):
         with self.subTest('test game choose marks function happy path option 1'):
             input_mock.return_value = 1
@@ -86,12 +98,34 @@ class TestStringMethods(unittest.TestCase):
             self.assertEqual(res, {'player1_mark': 'X', 'player2_mark': 'O'})
 
         with self.subTest('test game choose marks function happy path option 2'):
-                input_mock.return_value = 2
-                res = utils.choose_marks()
-                self.assertEqual(res, {'player1_mark': 'O',
-                                       'player2_mark': 'X'})
+            input_mock.return_value = 2
+            res = utils.choose_marks()
+            self.assertEqual(res, {'player1_mark': 'O',
+                                   'player2_mark': 'X'})
 
 
+    @patch('builtins.input')
+    def test_choose_marks_happy_path_option_1(self, input_mock: MagicMock):
+        input_mock.return_value = 1
+        res = app.choose_marks()
+        self.assertEqual(res, {'player1_mark': 'X',
+                               'player2_mark': 'O'})
+
+    @patch('builtins.input')
+    def test_choose_marks_happy_path_opotin_2(self, input_mock: MagicMock):
+        input_mock.return_value = 2
+        res = app.choose_marks()
+        self.assertEqual(res, {'player1_mark': 'O',
+                               'player2_mark': 'X'})
+
+
+
+    # @patch('builtins.input')
+    # def test_bot_vs_bot_always_ends_with_draw(self, input_mock: MagicMock):
+    #     with patch('sys.stdout', new=StringIO()) as fakeOutput:
+    #         input_mock.side_effect = [3, 1, 2]
+    #         app.app()
+    #         self.assertEqual(fakeOutput.getvalue().strip()[-13:], '\nTIE game !!!')
 
 
 if __name__ == '__main__':
