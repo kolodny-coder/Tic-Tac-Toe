@@ -147,6 +147,13 @@ class TestStringMethods(unittest.TestCase):
         res = utils.space_check(board, 4)
         self.assertFalse(res)
 
+    @patch('builtins.input')
+    def test_bot_vs_bot_always_ends_with_draw(self, input_mock: MagicMock):
+        with patch('sys.stdout', new=StringIO()) as fakeOutput:
+            input_mock.side_effect = [3, 1, 2]
+            app.app()
+            self.assertEqual(fakeOutput.getvalue().strip()[-13:], '\nTIE game !!!')
+
 
 
 

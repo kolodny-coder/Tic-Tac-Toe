@@ -94,7 +94,8 @@ def comp_move(board, player1_mark, player2_mark):
     best_move = 0
 
     for indx, key in enumerate(board):
-        if key == ' ':
+        free_spots = [' ', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+        if key in free_spots:
             board[indx] = player1_mark
             score = minmax(board, 0, False, player1_mark, player2_mark)
             board[indx] = ' '
