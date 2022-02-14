@@ -1,5 +1,23 @@
 
 import time
+
+
+def get_decorator(errors=(Exception,), default_value=''):
+    def decorator(func):
+
+        def new_func(*args, **kwargs):
+            try:
+                return func(*args, **kwargs)
+            except errors as e:
+                print('\n\nPlease choose a valid value\n\n ')
+                return new_func(*args, **kwargs)
+
+        return new_func
+
+    return decorator
+
+input_validator = get_decorator((ValueError), default_value='invalid value')
+
 def display_board(board):
     print('\n' * 1)
     print('            |   |' + '\t\t\t' + '             |   |' )
@@ -51,7 +69,7 @@ def check_for_draw(board):
     else:
         return False
 
-
+@input_validator
 def player_choice(board):
     position = 0
     while position not in [1, 2, 3, 4, 5, 6, 7, 8, 9] or not space_check(board, position):
@@ -59,7 +77,7 @@ def player_choice(board):
 
     return position
 
-
+@input_validator
 def reply():
     choice = int(input('Do YOU want to play again? 1 for yes 2 for no '))
     return choice == 1
@@ -113,13 +131,12 @@ def minmax(board, depth, is_maximazing, player1_mark, player2_mark):
 
         return best_score
 
-
+@input_validator
 def game_participants():
     while True:
-        try:
-            game_participates = int(input('please choose (1-3)\n 1. player vs bot\n 2. human vs player\n 3. bot vs bot '))
-        except ValueError:
-            game_participates = 'invalid value'
+
+        game_participates = int(input('please choose (1-3)\n 1. player vs bot\n 2. human vs player\n 3. bot vs bot '))
+
         if game_participates == 1:
             print('human vs bot\n')
             return 1
@@ -132,13 +149,10 @@ def game_participants():
         else:
             print('\n\nYou chose invalid option please choose a number between 1 - 3 try again \n\n')
 
-
+@input_validator
 def choose_marks():
     while True:
-        try:
-            chosen_mark = int(input('Please choose your mark (1-2)\n 1. O\n 2. X\n\n  '))
-        except ValueError:
-            chosen_mark = 'invalid value'
+        chosen_mark = int(input('Please choose your mark (1-2)\n 1. O\n 2. X\n\n  '))
 
         if chosen_mark == 1:
             print('you\'ll Play the O\'s and your opponent will play the X\'s  ')
@@ -158,3 +172,8 @@ def bot_turn(board, player1_mark, player2_mark):
     comp_move(board, player1_mark, player2_mark)
     print('\n' * 5)
     display_board(board)
+
+
+
+
+
