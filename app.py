@@ -14,7 +14,7 @@ def app():
         player2_mark = marks_dict['player2_mark']
 
         # SET EVERYTHING UP (BOARD)
-        the_board = ['#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
+        the_board = ['#', '1', '2', '3', '4', '5', '6', '7', '8', '9']
 
         # GAME PLAY
         turn = 'unknown yet'

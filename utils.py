@@ -1,14 +1,13 @@
-
 import time
 
 
-def get_decorator(errors=(Exception,), default_value=''):
+def get_decorator(errors=(Exception,)):
     def decorator(func):
 
         def new_func(*args, **kwargs):
             try:
                 return func(*args, **kwargs)
-            except errors as e:
+            except errors:
                 print('\n\nPlease choose a valid value\n\n ')
                 return new_func(*args, **kwargs)
 
@@ -16,22 +15,25 @@ def get_decorator(errors=(Exception,), default_value=''):
 
     return decorator
 
-input_validator = get_decorator((ValueError), default_value='invalid value')
+
+input_validator = get_decorator(ValueError)
+
 
 def display_board(board):
     print('\n' * 1)
-    print('            |   |' + '\t\t\t' + '             |   |' )
-    print('          ' + board[1] + ' | ' + board[2] + ' | ' + board[3] +  '\t\t\t' + '           1 | 2 | 3')
-    print('            |   |' + '\t\t\t' + '             |   |' )
-    print('        --------------' + '\t\t\t' + '        --------------')
-    print('            |   |' + '\t\t\t' + '             |   |' )
+    print('            |   |')
+    print('          ' + board[1] + ' | ' + board[2] + ' | ' + board[3])
+    print('            |   |')
+    print('        --------------')
+    print('            |   |')
 
-    print('          ' + board[4] + ' | ' + board[5] + ' | ' + board[6] +  '\t\t\t' + '           4 | 5 | 6')
-    print('            |   |' + '\t\t\t' + '             |   |' )
-    print('        --------------' + '\t\t\t' + '        --------------')
-    print('            |   |' + '\t\t\t' + '             |   |' )
-    print('          ' + board[7] + ' | ' + board[8] + ' | ' + board[9] +  '\t\t\t' + '           7 | 8 | 9')
-    print('            |   |' + '\t\t\t' + '             |   |' )
+    print('          ' + board[4] + ' | ' + board[5] + ' | ' + board[6])
+    print('            |   |')
+    print('        --------------')
+    print('            |   |')
+    print('          ' + board[7] + ' | ' + board[8] + ' | ' + board[9])
+    print('            |   |')
+
 
 def place_marker(board, mark, position):
     board[position] = mark
@@ -52,7 +54,8 @@ def check_for_win(board, mark):
 
 
 def space_check(board, position):
-    return board[position] == ' '
+    if board[position] in free_spots:
+        return True
 
 
 def full_board_check(board):
@@ -69,6 +72,7 @@ def check_for_draw(board):
     else:
         return False
 
+
 @input_validator
 def player_choice(board):
     position = 0
@@ -77,10 +81,14 @@ def player_choice(board):
 
     return position
 
+
 @input_validator
 def reply():
     choice = int(input('Do YOU want to play again? 1 for yes 2 for no '))
     return choice == 1
+
+
+free_spots = [' ', '1', '2', '3', '4', '5', '6', '7', '8', '9']
 
 
 def comp_move(board, player1_mark, player2_mark):
@@ -88,10 +96,10 @@ def comp_move(board, player1_mark, player2_mark):
     best_move = 0
 
     for indx, key in enumerate(board):
-        if key == ' ':
+        if key in free_spots:
             board[indx] = player1_mark
             score = minmax(board, 0, False, player1_mark, player2_mark)
-            board[indx] = ' '
+            board[indx] = str(indx)
             if score > best_score:
                 best_score = score
                 best_move = indx
@@ -111,10 +119,10 @@ def minmax(board, depth, is_maximazing, player1_mark, player2_mark):
         best_score = -1000
 
         for indx, key in enumerate(board):
-            if key == ' ':
+            if key in free_spots:
                 board[indx] = player1_mark
                 score = minmax(board, 0, False, player1_mark, player2_mark)
-                board[indx] = ' '
+                board[indx] = str(indx)
                 best_score = max(score, best_score)
 
         return best_score
@@ -123,13 +131,14 @@ def minmax(board, depth, is_maximazing, player1_mark, player2_mark):
         best_score = 1000
 
         for indx, key in enumerate(board):
-            if key == ' ':
+            if key in free_spots:
                 board[indx] = player2_mark
                 score = minmax(board, 0, True, player1_mark, player2_mark)
-                board[indx] = ' '
+                board[indx] = str(indx)
                 best_score = min(score, best_score)
 
         return best_score
+
 
 @input_validator
 def game_participants():
@@ -149,6 +158,7 @@ def game_participants():
         else:
             print('\n\nYou chose invalid option please choose a number between 1 - 3 try again \n\n')
 
+
 @input_validator
 def choose_marks():
     while True:
@@ -165,6 +175,7 @@ def choose_marks():
         else:
             print('You Picked invalid option please pick int between (1-2)')
 
+
 def bot_turn(board, player1_mark, player2_mark):
     print('\n' * 5)
     display_board(board)
@@ -172,8 +183,3 @@ def bot_turn(board, player1_mark, player2_mark):
     comp_move(board, player1_mark, player2_mark)
     print('\n' * 5)
     display_board(board)
-
-
-
-
-
