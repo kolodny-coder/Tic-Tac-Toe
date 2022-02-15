@@ -1,5 +1,6 @@
 import unittest
 from unittest.mock import MagicMock, patch
+from io import StringIO
 
 import app
 import utils
@@ -142,7 +143,7 @@ class TestStringMethods(unittest.TestCase):
         res = utils.space_check(board, 3)
         self.assertFalse(res)
 
-    def test_space_check_ccupied_spot_O_mark(self):
+    def test_space_check_occupied_spot_O_mark(self):
         board = ['#', '1', '2', 'X', 'O', '5', '6', '7', '8', '9']
         res = utils.space_check(board, 4)
         self.assertFalse(res)

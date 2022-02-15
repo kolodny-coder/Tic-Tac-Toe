@@ -88,17 +88,17 @@ def reply():
     choice = int(input('Do YOU want to play again? 1 for yes 2 for no '))
     return choice == 1
 
-
+free_spots = [' ', '1', '2', '3', '4', '5', '6', '7', '8', '9']
 def comp_move(board, player1_mark, player2_mark):
+
     best_score = -1000
     best_move = 0
 
     for indx, key in enumerate(board):
-        free_spots = [' ', '1', '2', '3', '4', '5', '6', '7', '8', '9']
         if key in free_spots:
             board[indx] = player1_mark
             score = minmax(board, 0, False, player1_mark, player2_mark)
-            board[indx] = ' '
+            board[indx] = str(indx)
             if score > best_score:
                 best_score = score
                 best_move = indx
@@ -118,10 +118,10 @@ def minmax(board, depth, is_maximazing, player1_mark, player2_mark):
         best_score = -1000
 
         for indx, key in enumerate(board):
-            if key == ' ':
+            if key in free_spots:
                 board[indx] = player1_mark
                 score = minmax(board, 0, False, player1_mark, player2_mark)
-                board[indx] = ' '
+                board[indx] = str(indx)
                 best_score = max(score, best_score)
 
         return best_score
@@ -130,10 +130,10 @@ def minmax(board, depth, is_maximazing, player1_mark, player2_mark):
         best_score = 1000
 
         for indx, key in enumerate(board):
-            if key == ' ':
+            if key in free_spots:
                 board[indx] = player2_mark
                 score = minmax(board, 0, True, player1_mark, player2_mark)
-                board[indx] = ' '
+                board[indx] = str(indx)
                 best_score = min(score, best_score)
 
         return best_score
